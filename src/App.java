@@ -1,11 +1,31 @@
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.InputMismatchException;
 
 public class App {
     public static void main(String[] args) throws Exception {
         
-        String heroName = "Denubio";
-        int xp = 2005; 
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o nome do herói: ");
+        String heroName = scanner.nextLine();
+        
+        int xp = 0;
+        boolean validXp = false;
+
+        while (!validXp) {
+            System.out.print("Digite a quantidade de XP: ");
+            try {
+                xp = scanner.nextInt();
+                validXp = true; 
+
+            } catch (InputMismatchException e) {
+                System.out.println("Erro: Por favor, digite um número inteiro para o XP.");
+                scanner.next(); // Limpa a entrada inválida
+            }
+        }
+        scanner.close();
 
         TreeMap<Integer, String> xpRanks = new TreeMap<>();
         xpRanks.put(0, "Ferro");
